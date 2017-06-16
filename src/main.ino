@@ -1,23 +1,5 @@
 #include <Servo.h>
 
-Servo myservo;  // create servo object to control a servo
-
-int potpin = 0;  // analog pin used to connect the potentiometer
-int val;    // variable to read the value from the analog pin
-
-void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-}
-
-void loop() {
-  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
-  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-  myservo.write(val);                  // sets the servo position according to the scaled value
-  delay(15);                           // waits for the servo to get there
-}
-//-------------------------//
-#include <Servo.h>
-
 Servo motorOne;
 Servo motorTwo;
 Servo pwmOne;
@@ -27,6 +9,21 @@ int motorOnePin = 11;
 int motorTwoPin = 10;
 int pwmOnePin = 9;
 int pwmTwoPin = 6;
+
+int motorOneSwitchPin = 5;
+int motorTwoSwitchPin = 4;
+int motorThreeSwitchPin = 3;
+int motorFourSwitchPin = 2;
+
+int motorOneSwitch;
+int motorTwoSwitch;
+int motorThreeSwitch;
+int motorFourSwitch;
+
+int sliderOnePin = 0;
+int sliderTwoPin = 1;
+int sliderThreePin = 2;
+int sliderFourPin = 3;
 
 int sliderOne;
 int sliderTwo;
@@ -38,9 +35,29 @@ void setup(){
   motorTwo.attach(motorTwoPin);
   pwmOne.attach(pwmOnePin);
   pwmTwo.attach(pwmTwoPin);
-  
+
   motorOne.write(90);
   motorTwo.write(90);
   pwmOne.write(90);
-  pwmTwo..write(90);
+  pwmTwo.write(90);
+}
+
+void loop(){
+  sliderTwo = analogRead(sliderTwoPin);
+  sliderThree = analogRead(sliderThreePin);
+  sliderFour = analogRead(sliderFourPin);
+
+  motorOneSwitch = digitalRead(motorOneSwitchPin);
+  motorTwoSwitch = digitalRead(motorTwoSwitchPin);
+  motorThreeSwitch = digitalRead(motorThreeSwitchPin);
+  motorFourSwitch = digitalRead(motorFourSwitchPin);
+
+  if (motorOneSwitch == HIGH){
+    sliderOne = analogRead(sliderOnePin);
+    map(sliderOne, 0, 1023, 0, 180);
+    motorOne.write(sliderOne);
+  }else{
+    motorOne.write(90);
+  }
+
 }
