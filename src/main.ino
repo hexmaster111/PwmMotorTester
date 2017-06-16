@@ -1,3 +1,6 @@
+//TODO Add The led lights to the switching functions
+
+
 #include <Servo.h>
 
 Servo motorOne;
@@ -15,15 +18,20 @@ int motorTwoSwitchPin = 4;
 int motorThreeSwitchPin = 3;
 int motorFourSwitchPin = 2;
 
-int motorOneSwitch;
-int motorTwoSwitch;
-int motorThreeSwitch;
-int motorFourSwitch;
-
 int sliderOnePin = 0;
 int sliderTwoPin = 1;
 int sliderThreePin = 2;
 int sliderFourPin = 3;
+
+int ledOnePin = 13;
+int ledTwoPin = 12;
+int ledThreePin = 8;
+int ledFourPin = 7;
+
+int motorOneSwitch;
+int motorTwoSwitch;
+int motorThreeSwitch;
+int motorFourSwitch;
 
 int sliderOne;
 int sliderTwo;
@@ -40,13 +48,20 @@ void setup(){
   motorTwo.write(90);
   pwmOne.write(90);
   pwmTwo.write(90);
+  //A little Flashing So we know all the leds are working
+  digitalWrite(ledOnePin, HIGH);
+  digitalWrite(ledTwoPin, HIGH);
+  digitalWrite(ledThreePin, HIGH);
+  digitalWrite(ledFourPin, HIGH);
+  delay(1000);
+  digitalWrite(ledOnePin, LOW);
+  digitalWrite(ledTwoPin, LOW);
+  digitalWrite(ledThreePin, LOW);
+  digitalWrite(ledFourPin, LOW);
+  //End of the flashy flashy
 }
 
 void loop(){
-  sliderTwo = analogRead(sliderTwoPin);
-  sliderThree = analogRead(sliderThreePin);
-  sliderFour = analogRead(sliderFourPin);
-
   motorOneSwitch = digitalRead(motorOneSwitchPin);
   motorTwoSwitch = digitalRead(motorTwoSwitchPin);
   motorThreeSwitch = digitalRead(motorThreeSwitchPin);
@@ -59,5 +74,30 @@ void loop(){
   }else{
     motorOne.write(90);
   }
+
+  if (motorTwoSwitch == HIGH){
+    sliderTwo = analogRead(sliderTwoPin);
+    map(sliderTwo, 0, 1023, 0, 180);
+    motorTwo.write(sliderTwo);
+  }else{
+    motorTwo.write(90);
+  }
+
+  if (motorThreeSwitch == HIGH){
+    sliderTwo = analogRead(sliderThreePin);
+    map(sliderThree, 0, 1023, 0, 180);
+    pwmTwo.write(sliderThree);
+  }else{
+    pwmOne.write(90);
+  }
+
+  if (motorFourSwitch == HIGH){
+    sliderFour = analogRead(sliderFourPin);
+    map(sliderFour, 0, 1023, 0, 180);
+    pwmTwo.write(sliderFour);
+  }else{
+    pwmTwo.write(90);
+  }
+
 
 }
