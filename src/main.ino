@@ -1,4 +1,8 @@
-//TODO Add The led lights to the switching functions
+//By Trevor Gruszynski, A porgram for testing PWM motor contolrers for HUHS first
+//Robotics. Feel Free To Modify this program and use it as you like
+
+
+//TODO TEST THIS MONSTER
 
 
 #include <Servo.h>
@@ -71,32 +75,40 @@ void loop(){
     sliderOne = analogRead(sliderOnePin);
     map(sliderOne, 0, 1023, 0, 180);
     motorOne.write(sliderOne);
+    digitalWrite(ledOnePin, HIGH);
   }else{
     motorOne.write(90);
+    digitalWrite(ledOnePin, LOW);
   }
 
   if (motorTwoSwitch == HIGH){
     sliderTwo = analogRead(sliderTwoPin);
     map(sliderTwo, 0, 1023, 0, 180);
     motorTwo.write(sliderTwo);
+    digitalWrite(ledTwoPin, HIGH);
   }else{
     motorTwo.write(90);
+    digitalWrite(ledTwoPin, LOW);
   }
 
   if (motorThreeSwitch == HIGH){
     sliderTwo = analogRead(sliderThreePin);
     map(sliderThree, 0, 1023, 0, 180);
     pwmTwo.write(sliderThree);
+    digitalWrite(ledThreePin, HIGH);
   }else{
     pwmOne.write(90);
+    digitalWrite(ledThreePin, LOW);
   }
 
   if (motorFourSwitch == HIGH){
     sliderFour = analogRead(sliderFourPin);
     map(sliderFour, 0, 1023, 0, 180);
     pwmTwo.write(sliderFour);
+    digitalWrite(ledFourPin, High);
   }else{
     pwmTwo.write(90);
+    digitalWrite(ledFourPin, LOW);
   }
 
 
