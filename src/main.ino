@@ -1,4 +1,4 @@
-//By Trevor Gruszynski, A porgram for testing PWM motor contolrers for HUHS first
+//By Trevor Gruszynski, A porgram for testing PWM motor contolrers for HUHS FIRST
 //Robotics. Feel Free To Modify this program and use it as you like
 
 
@@ -110,6 +110,4 @@ void loop(){
     pwmTwo.write(90);
     digitalWrite(ledFourPin, LOW);
   }
-
-
 }
