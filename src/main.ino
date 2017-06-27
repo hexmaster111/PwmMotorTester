@@ -5,12 +5,12 @@
 //TODO TEST THIS MONSTER
 
 
-#include <Servo.h>
+#include <Servo.h>  //Include the servo library
 
-Servo motorOne;
-Servo motorTwo;
-Servo pwmOne;
-Servo pwmTwo;
+Servo motorOne;     //Initlize the servo outputs
+Servo motorTwo;     //Servos use the same PWM output
+Servo pwmOne;       //Thus we can use the servo lib to do pwm output
+Servo pwmTwo;       //0 is -100 90 is 0 and 180 is 100
 
 int motorOnePin = 11;
 int motorTwoPin = 10;
